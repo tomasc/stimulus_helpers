@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "stimulus_helpers/version"
+require "active_support/core_ext/string/inflections"
 require "json"
 
 module StimulusHelpers
@@ -94,7 +95,7 @@ module StimulusHelpers
     attributes.transform_keys! { |key| "#{key}-#{type}" } if type
     attributes.each_with_object({}) do |(key, value), res|
       value = value.to_json if value.is_a?(Array) || value.is_a?(Hash)
-      res["#{controller}-#{key}"] = value.to_s
+      res["#{controller}-#{key.to_s.dasherize}"] = value.to_s
     end
   end
 end

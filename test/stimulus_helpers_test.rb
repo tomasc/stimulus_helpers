@@ -15,8 +15,8 @@ class StimulusHelpersTest < Minitest::Test
   end
 
   def test_class
-    assert_equal dummy.stimulus_class("controller", "open", ".open"), { "controller-open-class" => ".open" }
-    assert_equal dummy.stimulus_classes("controller", open: ".open", closed: ".closed"), { "controller-open-class" => ".open", "controller-closed-class" => ".closed" }
+    assert_equal dummy.stimulus_class("controller", "open", "open"), { "controller-open-class" => "open" }
+    assert_equal dummy.stimulus_classes("controller", open: "open", closed: "closed", some_other: "foo"), { "controller-open-class" => "open", "controller-closed-class" => "closed", "controller-some-other-class" => "foo", }
   end
 
   def test_value
