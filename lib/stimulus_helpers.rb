@@ -8,11 +8,23 @@ module StimulusHelpers
     { controller: controller }
   end
 
-  def stimulus_action(controller, actions = {})
+  def stimulus_action(controller, action, listener)
+    build_stimulus_action(controller: controller, actions: { action => listener})
+  end
+
+  def stimulus_actions(controller, actions = {})
     build_stimulus_action(controller: controller, actions: actions)
   end
 
-  def stimulus_class(controller, classes = {})
+  def stimulus_class(controller, name, value)
+    build_stimulus_attribute(
+      controller: controller,
+      attributes: { name => value },
+      type: "class"
+    )
+  end
+
+  def stimulus_classes(controller, classes = {})
     build_stimulus_attribute(
       controller: controller,
       attributes: classes,
@@ -20,7 +32,15 @@ module StimulusHelpers
     )
   end
 
-  def stimulus_value(controller, values = {})
+  def stimulus_value(controller, name, value)
+    build_stimulus_attribute(
+      controller: controller,
+      attributes: { name => value },
+      type: "value"
+    )
+  end
+
+  def stimulus_values(controller, values = {})
     build_stimulus_attribute(
       controller: controller,
       attributes: values,
@@ -35,7 +55,15 @@ module StimulusHelpers
     )
   end
 
-  def stimulus_param(controller, params = {})
+  def stimulus_param(controller, name, value)
+    build_stimulus_attribute(
+      controller: controller,
+      attributes: { name => value },
+      type: "param"
+    )
+  end
+
+  def stimulus_params(controller, params = {})
     build_stimulus_attribute(
       controller: controller,
       attributes: params,
@@ -43,10 +71,10 @@ module StimulusHelpers
     )
   end
 
-  def stimulus_outlet(controller, outlets = {})
+  def stimulus_outlet(controller, name, value)
     build_stimulus_attribute(
       controller: controller,
-      attributes: outlets,
+      attributes: { name => value },
       type: "outlet"
     )
   end
