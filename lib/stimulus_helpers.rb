@@ -80,6 +80,14 @@ module StimulusHelpers
     )
   end
 
+  def stimulus_outlets(controller, outlets = {})
+    build_stimulus_attribute(
+      controller: controller,
+      attributes: outlets,
+      type: "outlet"
+    )
+  end
+
   private
 
   def build_stimulus_action(controller:, actions: {})

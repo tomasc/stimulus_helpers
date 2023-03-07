@@ -37,6 +37,7 @@ class StimulusHelpersTest < Minitest::Test
 
   def test_outlet
     assert_equal dummy.stimulus_outlet("controller", "result", ".result"), { "controller-result-outlet" => ".result" }
+    assert_equal dummy.stimulus_outlets("controller", { result: ".result", output: ".output" }), { "controller-result-outlet" => ".result", "controller-output-outlet" => ".output" }
   end
 
   private
