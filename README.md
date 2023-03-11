@@ -1,6 +1,6 @@
 # StimulusHelpers
 
-![StimulusHelpers](https://github.com/tomasc/stimulus_helpers/workflows/Ruby/badge.svg)
+[![StimulusHelpers](https://github.com/tomasc/stimulus_helpers/actions/workflows/ruby.yml/badge.svg)](https://github.com/tomasc/stimulus_helpers/actions/workflows/ruby.yml)
 
 Helpers to build stimulus controller attributes for use in views and components.
 
