@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class StimulusHelped
@@ -41,8 +43,7 @@ class StimulusHelpersTest < Minitest::Test
   end
 
   private
-
-  def dummy
-    StimulusHelped.new
-  end
+    def dummy
+      StimulusHelped.new
+    end
 end

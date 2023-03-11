@@ -1,5 +1,7 @@
 # StimulusHelpers
 
+![StimulusHelpers](https://github.com/tomasc/stimulus_helpers/workflows/Ruby/badge.svg)
+
 Helpers to build stimulus controller attributes for use in views and components.
 
 ## Installation
@@ -17,50 +19,54 @@ If bundler is not being used to manage dependencies, install the gem by executin
 Simply include the `StimulusHelpers` module:
 
 ```ruby
-class Component
+class MyClass
   include StimulusHelpers
 end
+
+# or
+
+ActionView::Base.send :include, StimulusHelpers
+
+# etc.
 ```
 
 This will add the following helpers:
 
 ```ruby
-component = Component.new
-
-component.stimulus_controller("component")
+stimulus_controller("component")
 # => { "controller" => "component" }
 
-component.stimulus_action("component", "click", "open")
+stimulus_action("component", "click", "open")
 # => { "action" => "click->component#open" }
 
-component.stimulus_actions("component", click: "open", blur: "close")
+stimulus_actions("component", click: "open", blur: "close")
 # => { "action" => "click->component#open blur->component#close" }
 
-component.stimulus_class("component", "open", "component--open")
+stimulus_class("component", "open", "component--open")
 # => { "component-open-class" => "component--open" }
 
-component.stimulus_classes("component", open: "component--open", closed: "component--closed")
+stimulus_classes("component", open: "component--open", closed: "component--closed")
 # => { "component-open-class" => "component--open", "component-closed-class" => "component--closed" }
 
-component.stimulus_value("component", "open", true)
+stimulus_value("component", "open", true)
 # => { "component-open-value" => "true" }
 
-component.stimulus_values("component", user: { name: "Jens" }, names: ["foo", "bar"])
+stimulus_values("component", user: { name: "Jens" }, names: ["foo", "bar"])
 # => { "component-user-value" => "{\"name\":\"Jens\"}", "component-names-value" => "[\"foo\",\"bar\"]" }
 
-component.stimulus_target("component", :input)
+stimulus_target("component", :input)
 # => { "component-target" => "input" }
 
-component.stimulus_param("component", "id", 123)
+stimulus_param("component", "id", 123)
 # => { "component-id-param" => "123" }
 
-component.stimulus_params("component", id: 123, name: "Jens")
+stimulus_params("component", id: 123, name: "Jens")
 # => { "component-id-param" => "123", "component-name-param" => "Jens" }
 
-component.stimulus_outlet("component", "result", ".result")
+stimulus_outlet("component", "result", ".result")
 # => { "component-result-outlet" => ".result" }
 
-component.stimulus_outlets("component", result: ".result", output: ".output")
+stimulus_outlets("component", result: ".result", output: ".output")
 # => { "component-result-outlet" => ".result", "component-output-outlet" => ".output" }
 ```
 
