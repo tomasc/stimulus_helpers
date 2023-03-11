@@ -2,7 +2,7 @@
 
 [![StimulusHelpers](https://github.com/tomasc/stimulus_helpers/actions/workflows/ruby.yml/badge.svg)](https://github.com/tomasc/stimulus_helpers/actions/workflows/ruby.yml)
 
-Helpers to build stimulus controller attributes for use in views and components.
+Helpers to build stimulus controller attributes for use in views and controller-names.
 
 ## Installation
 
@@ -32,42 +32,68 @@ ActionView::Base.send :include, StimulusHelpers
 
 This will add the following helpers:
 
+Controller:
+
 ```ruby
-stimulus_controller("component")
-# => { "controller" => "component" }
+stimulus_controller("controller-name")
+# => { "controller" => "controller-name" }
+```
 
-stimulus_action("component", "click", "open")
-# => { "action" => "click->component#open" }
+Action:
 
-stimulus_actions("component", click: "open", blur: "close")
-# => { "action" => "click->component#open blur->component#close" }
+```ruby
+stimulus_action("controller-name", "click", "open")
+# => { "action" => "click->controller-name#open" }
 
-stimulus_class("component", "open", "component--open")
-# => { "component-open-class" => "component--open" }
+stimulus_actions("controller-name", click: "open", blur: "close")
+# => { "action" => "click->controller-name#open blur->controller-name#close" }
+```
 
-stimulus_classes("component", open: "component--open", closed: "component--closed")
-# => { "component-open-class" => "component--open", "component-closed-class" => "component--closed" }
+Class:
 
-stimulus_value("component", "open", true)
-# => { "component-open-value" => "true" }
+```ruby
+stimulus_class("controller-name", "open", "controller-name--open")
+# => { "controller-name-open-class" => "controller-name--open" }
 
-stimulus_values("component", user: { name: "Jens" }, names: ["foo", "bar"])
-# => { "component-user-value" => "{\"name\":\"Jens\"}", "component-names-value" => "[\"foo\",\"bar\"]" }
+stimulus_classes("controller-name", open: "controller-name--open", closed: "controller-name--closed")
+# => { "controller-name-open-class" => "controller-name--open", "controller-name-closed-class" => "controller-name--closed" }
+```
 
-stimulus_target("component", :input)
-# => { "component-target" => "input" }
+Value:
 
-stimulus_param("component", "id", 123)
-# => { "component-id-param" => "123" }
+```ruby
+stimulus_value("controller-name", "open", true)
+# => { "controller-name-open-value" => "true" }
 
-stimulus_params("component", id: 123, name: "Jens")
-# => { "component-id-param" => "123", "component-name-param" => "Jens" }
+stimulus_values("controller-name", user: { name: "Jens" }, names: ["foo", "bar"])
+# => { "controller-name-user-value" => "{\"name\":\"Jens\"}", "controller-name-names-value" => "[\"foo\",\"bar\"]" }
+```
 
-stimulus_outlet("component", "result", ".result")
-# => { "component-result-outlet" => ".result" }
+Target:
 
-stimulus_outlets("component", result: ".result", output: ".output")
-# => { "component-result-outlet" => ".result", "component-output-outlet" => ".output" }
+```ruby
+stimulus_target("controller-name", :input)
+# => { "controller-name-target" => "input" }
+```
+
+Param:
+
+```ruby
+stimulus_param("controller-name", "id", 123)
+# => { "controller-name-id-param" => "123" }
+
+stimulus_params("controller-name", id: 123, name: "Jens")
+# => { "controller-name-id-param" => "123", "controller-name-name-param" => "Jens" }
+```
+
+Outlet:
+
+```ruby
+stimulus_outlet("controller-name", "result", ".result")
+# => { "controller-name-result-outlet" => ".result" }
+
+stimulus_outlets("controller-name", result: ".result", output: ".output")
+# => { "controller-name-result-outlet" => ".result", "controller-name-output-outlet" => ".output" }
 ```
 
 ## Development
