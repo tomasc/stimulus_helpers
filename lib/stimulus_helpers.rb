@@ -93,9 +93,9 @@ module StimulusHelpers
     def build_stimulus_action(controller:, actions: {})
       action = actions.map do |action, listeners|
         Array(listeners).map do |listener|
-          "#{action}->#{controller}##{listener}"
+          "#{action}->#{controller}##{listener}".html_safe
         end
-      end.join(" ")
+      end.join(" ").html_safe
       { action: }
     end
 
