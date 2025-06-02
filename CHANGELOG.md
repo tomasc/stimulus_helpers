@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-01-06
+
 ### Performance
 - Optimize string operations and concatenations for large attribute sets
 - Add caching for dasherized keys to avoid repeated string transformations
