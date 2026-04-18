@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.0] - 2026-04-18
 
 ### Performance
 - Drop the `Mutex` from `cached_dasherize`. The cached operation is deterministic (same input always yields same output), so a concurrent duplicate compute produces the same value and the overwrite is harmless. Ruby Hash writes are atomic enough at the VM level for this pattern. Saves a `Mutex#synchronize` block invocation on every call — hundreds per heavy page render in consumer apps.
