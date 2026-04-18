@@ -5,12 +5,14 @@ require "active_support/core_ext/string/inflections"
 require "json"
 
 module StimulusHelpers
-  # Cache for dasherized keys to avoid repeated string operations
+  # Cache for dasherized keys to avoid repeated string operations.
+  # No mutex: writes are idempotent (same input → same output), so a
+  # concurrent race just does the work twice and overwrites harmlessly.
+  # Ruby Hash writes are atomic at the VM level for this simple case.
   @dasherized_cache = {}
-  @cache_mutex = Mutex.new
 
   class << self
-    attr_reader :dasherized_cache, :cache_mutex
+    attr_reader :dasherized_cache
   end
 
   # @see https://blog.saeloun.com/2021/09/28/ruby-allow-value-omission-in-hash-literals
@@ -139,8 +141,6 @@ module StimulusHelpers
     end
 
     def cached_dasherize(string)
-      StimulusHelpers.cache_mutex.synchronize do
-        StimulusHelpers.dasherized_cache[string] ||= string.dasherize
-      end
+      StimulusHelpers.dasherized_cache[string] ||= string.dasherize
     end
 end
